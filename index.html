@@ -324,10 +324,11 @@ function describeArc(cx, cy, r, startAngle, endAngle){
 function buildDialSVG(adj, valueFrac, color, colorDim){
   // angle range -135 to +135 (270 deg total)
   const A0 = -135, A1 = 135;
-  const cx=80, cy=80, rOuter=64, rTrack=58, rTick=70;
+  const cx=80, cy=78;
   const needleAngle = A0 + valueFrac*(A1-A0);
+  const uid = adj.key; // unique suffix for gradient/filter ids per card
 
-  // tick marks
+  // fixed bezel tick marks (engraved into the housing, do not rotate)
   const nTicks = adj.max <= 18 ? adj.max : adj.max*4; // for turns use quarter-ticks
   let ticks = '';
   for(let i=0;i<=nTicks;i++){
@@ -335,31 +336,110 @@ function buildDialSVG(adj, valueFrac, color, colorDim){
     const ang = A0 + frac*(A1-A0);
     const a = (ang-90)*Math.PI/180;
     const major = (adj.unit==='clicks') ? (i % (adj.max>=16?4:2) === 0) : (i % 4 === 0);
-    const r1 = major ? 52 : 56;
-    const r2 = 62;
+    const r1 = major ? 60 : 64;
+    const r2 = 70;
     const x1 = cx + r1*Math.cos(a), y1 = cy + r1*Math.sin(a);
     const x2 = cx + r2*Math.cos(a), y2 = cy + r2*Math.sin(a);
-    ticks += `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="${major?'#8b9097':'#454a50'}" stroke-width="${major?1.6:1}" />`;
+    // double-line engraved look: dark shadow line + light highlight line, offset
+    ticks += `<line x1="${x1.toFixed(1)}" y1="${(y1+0.6).toFixed(1)}" x2="${x2.toFixed(1)}" y2="${(y2+0.6).toFixed(1)}" stroke="#0c0d0f" stroke-width="${major?1.8:1.1}" stroke-linecap="round"/>`;
+    ticks += `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="${major?'#9aa0a6':'#5a5f65'}" stroke-width="${major?1.6:1}" stroke-linecap="round"/>`;
   }
 
-  const trackPath = describeArc(cx, cy, rTrack, A0, A1);
-  const fillPath = describeArc(cx, cy, rTrack, A0, needleAngle);
+  const trackPath = describeArc(cx, cy, 71.5, A0, A1);
+  const fillPath = describeArc(cx, cy, 71.5, A0, needleAngle);
+
+  // knurl notches around the rotating knob rim (rotate WITH the knob)
+  let knurl = '';
+  const knurlCount = 36;
+  for(let i=0;i<knurlCount;i++){
+    const ang = (i/knurlCount)*360;
+    const a = (ang + needleAngle - 90)*Math.PI/180; // rotates with knob
+    const r1 = 42, r2 = 47;
+    const x1 = cx + r1*Math.cos(a), y1 = cy + r1*Math.sin(a);
+    const x2 = cx + r2*Math.cos(a), y2 = cy + r2*Math.sin(a);
+    knurl += `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="#000" stroke-opacity="0.35" stroke-width="1.4"/>`;
+  }
+
+  // indicator line on the knob cap, points to current setting (rotates with knob)
   const needleRad = (needleAngle-90)*Math.PI/180;
-  const nx = cx + 44*Math.cos(needleRad);
-  const ny = cy + 44*Math.sin(needleRad);
+  const nx1 = cx + 10*Math.cos(needleRad), ny1 = cy + 10*Math.sin(needleRad);
+  const nx2 = cx + 39*Math.cos(needleRad), ny2 = cy + 39*Math.sin(needleRad);
 
   return `
-  <svg width="160" height="150" viewBox="0 0 160 150">
-    <g>
+  <svg width="160" height="148" viewBox="0 0 160 148">
+    <defs>
+      <radialGradient id="bezel-${uid}" cx="35%" cy="30%" r="75%">
+        <stop offset="0%" stop-color="#3a3e43"/>
+        <stop offset="55%" stop-color="#222528"/>
+        <stop offset="100%" stop-color="#101214"/>
+      </radialGradient>
+      <radialGradient id="knob-${uid}" cx="38%" cy="32%" r="70%">
+        <stop offset="0%" stop-color="${color}" stop-opacity="0.95"/>
+        <stop offset="40%" stop-color="${color}"/>
+        <stop offset="78%" stop-color="${colorDim}"/>
+        <stop offset="100%" stop-color="#0e0f10"/>
+      </radialGradient>
+      <radialGradient id="cap-${uid}" cx="38%" cy="30%" r="65%">
+        <stop offset="0%" stop-color="#3d4146"/>
+        <stop offset="60%" stop-color="#222528"/>
+        <stop offset="100%" stop-color="#131517"/>
+      </radialGradient>
+      <radialGradient id="gloss-${uid}" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#ffffff" stop-opacity="0.65"/>
+        <stop offset="45%" stop-color="#ffffff" stop-opacity="0.22"/>
+        <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="shade-${uid}" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#000000" stop-opacity="0"/>
+        <stop offset="70%" stop-color="#000000" stop-opacity="0"/>
+        <stop offset="100%" stop-color="#000000" stop-opacity="0.5"/>
+      </radialGradient>
+      <clipPath id="clip-${uid}">
+        <circle cx="${cx}" cy="${cy}" r="48"/>
+      </clipPath>
+      <filter id="blur-${uid}" x="-60%" y="-60%" width="220%" height="220%">
+        <feGaussianBlur stdDeviation="3.2"/>
+      </filter>
+      <filter id="shadow-${uid}" x="-50%" y="-50%" width="200%" height="200%">
+        <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#000" flood-opacity="0.45"/>
+      </filter>
+    </defs>
+
+    <g filter="url(#shadow-${uid})">
+      <!-- outer housing -->
+      <circle cx="${cx}" cy="${cy}" r="74" fill="url(#bezel-${uid})" stroke="#000" stroke-width="1"/>
+      <circle cx="${cx}" cy="${cy}" r="74" fill="none" stroke="#46494e" stroke-width="1" opacity="0.5"/>
+
       ${ticks}
-      <path d="${trackPath}" fill="none" stroke="#2c2f33" stroke-width="6" stroke-linecap="round"/>
-      <path d="${fillPath}" fill="none" stroke="${color}" stroke-width="6" stroke-linecap="round"/>
-      <circle cx="${cx}" cy="${cy}" r="38" fill="#15171a" stroke="#33373c" stroke-width="1"/>
-      <line x1="${cx}" y1="${cy}" x2="${nx.toFixed(1)}" y2="${ny.toFixed(1)}" stroke="${color}" stroke-width="3" stroke-linecap="round"/>
-      <circle cx="${cx}" cy="${cy}" r="5" fill="${color}"/>
-      <text x="${cx-30}" y="${cy+58}" font-family="IBM Plex Mono, monospace" font-size="9" fill="#5b5f64">CLOSED</text>
-      <text x="${cx+8}" y="${cy+58}" font-family="IBM Plex Mono, monospace" font-size="9" fill="#5b5f64">OPEN</text>
+
+      <!-- progress arc track -->
+      <path d="${trackPath}" fill="none" stroke="#000" stroke-width="5" stroke-linecap="round" opacity="0.5"/>
+      <path d="${fillPath}" fill="none" stroke="${color}" stroke-width="3.5" stroke-linecap="round" opacity="0.9"/>
+
+      <!-- rotating knob body -->
+      <g>
+        <circle cx="${cx}" cy="${cy}" r="48" fill="url(#knob-${uid})" stroke="#0a0a0a" stroke-width="1.5"/>
+        ${knurl}
+        <circle cx="${cx}" cy="${cy}" r="48" fill="none" stroke="#000" stroke-opacity="0.3" stroke-width="1"/>
+        <!-- ambient occlusion + specular highlight, clipped to the knob disc -->
+        <g clip-path="url(#clip-${uid})">
+          <circle cx="${cx}" cy="${cy}" r="48" fill="url(#shade-${uid})"/>
+          <ellipse cx="${cx-16}" cy="${cy-18}" rx="20" ry="14" fill="url(#gloss-${uid})" filter="url(#blur-${uid})" transform="rotate(-28 ${cx-16} ${cy-18})"/>
+        </g>
+        <!-- inner cap -->
+        <circle cx="${cx}" cy="${cy}" r="30" fill="url(#cap-${uid})" stroke="#000" stroke-width="1"/>
+        <g clip-path="url(#clip-${uid})">
+          <ellipse cx="${cx-9}" cy="${cy-11}" rx="13" ry="8" fill="url(#gloss-${uid})" filter="url(#blur-${uid})" transform="rotate(-28 ${cx-9} ${cy-11})"/>
+        </g>
+        <!-- indicator line (points to current click position) -->
+        <line x1="${nx1.toFixed(1)}" y1="${ny1.toFixed(1)}" x2="${nx2.toFixed(1)}" y2="${ny2.toFixed(1)}" stroke="#f4f1e9" stroke-width="3.2" stroke-linecap="round"/>
+        <line x1="${nx1.toFixed(1)}" y1="${ny1.toFixed(1)}" x2="${nx2.toFixed(1)}" y2="${ny2.toFixed(1)}" stroke="${color}" stroke-width="1.2" stroke-linecap="round"/>
+        <circle cx="${cx}" cy="${cy}" r="4.5" fill="#0e0f10" stroke="#4a4d52" stroke-width="1"/>
+      </g>
     </g>
+
+    <text x="${cx-32}" y="${cy+66}" font-family="IBM Plex Mono, monospace" font-size="9" fill="#5b5f64">CLOSED</text>
+    <text x="${cx+6}" y="${cy+66}" font-family="IBM Plex Mono, monospace" font-size="9" fill="#5b5f64">OPEN</text>
   </svg>`;
 }
 
@@ -386,6 +466,7 @@ function renderDials(){
     const frac = adj.unit==='clicks' ? clicks/adj.max : clicks/adj.max;
     const color = adj.kind==='comp' ? 'var(--comp)' : 'var(--reb)';
     const colorHex = adj.kind==='comp' ? '#d94f30' : '#3e8cc4';
+    const colorDimHex = adj.kind==='comp' ? '#5c2c20' : '#1f3c50';
     return `
       <div class="dial-card ${adj.kind}">
         <div class="dial-head">
@@ -395,7 +476,7 @@ function renderDials(){
           </div>
           <div class="badge">${adj.unit}</div>
         </div>
-        <div class="dial-svg-wrap">${buildDialSVG(adj, frac, colorHex)}</div>
+        <div class="dial-svg-wrap">${buildDialSVG(adj, frac, colorHex, colorDimHex)}</div>
         <div class="readout"><span class="num">${formatClicks(adj, clicks)}</span></div>
         <div class="turn-note">From fully closed, turn <b>${clicks===0?'— (leave closed)':'CCW'}</b> ${clicks!==0 ? `to open ${adj.unit==='clicks'?`${clicks} click${clicks===1?'':'s'}`:`${formatClicksPlain(adj,clicks)} ${adj.unit}`}` : ''}</div>
       </div>`;
