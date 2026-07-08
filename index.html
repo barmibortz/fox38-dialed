@@ -18,7 +18,8 @@
 :root {
   --bg:#15171a; --panel:#1d2023; --panel2:#23262a; --line:#2e3236;
   --gold:#c9a227; --text:#edeae3; --muted:#8b9097; --faint:#4a5060;
-  --blue:#3a9bdc; --blue-dim:#0e1e2e; --grey:#d0d4d8; --grey-dim:#2a2e33;
+  --blue:#3a9bdc; --blue-dim:#0e1e2e;
+  --grey:#d0d4d8; --grey-dim:#2a2e33;
   --orange:#e07030; --orange-dim:#2a1208;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -38,10 +39,8 @@ header{
 .brand h1 span{color:var(--gold);}
 .brand p{font-size:11px;color:var(--muted);margin-top:2px;letter-spacing:.03em;}
 .badges{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
-.badge{
-  font-family:'IBM Plex Mono',monospace;font-size:10px;padding:3px 9px;
-  border-radius:20px;border:1px solid var(--line);color:var(--muted);
-}
+.badge{font-family:'IBM Plex Mono',monospace;font-size:10px;padding:3px 9px;
+  border-radius:20px;border:1px solid var(--line);color:var(--muted);}
 .badge.b{border-color:var(--blue);color:var(--blue);}
 .badge.o{border-color:var(--orange);color:var(--orange);}
 /* Layout */
@@ -83,12 +82,10 @@ input[type=range]::-moz-range-thumb{
   font-family:'Space Grotesk',sans-serif;font-size:13px;transition:all .14s;
 }
 .tbtn:last-child{margin-bottom:0;}
-.tbtn .ic{font-size:18px;}
 .tbtn small{display:block;color:var(--muted);font-size:11px;margin-top:1px;}
 .tbtn.on{border-color:var(--gold);background:#251f0d;}
 /* Right area */
 .rarea{display:flex;flex-direction:column;gap:14px;}
-/* Dial cards */
 .dcard{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:15px;}
 .dcard.comp{border-top:3px solid var(--blue);}
 .dcard.reb{border-top:3px solid var(--orange);}
@@ -96,16 +93,12 @@ input[type=range]::-moz-range-thumb{
 .dcard-head .title{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;}
 .dcard-head .title.b{color:var(--blue);}
 .dcard-head .title.o{color:var(--orange);}
-.dcard-head .pill{
-  font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 8px;
-  border-radius:20px;border:1px solid var(--line);color:var(--muted);
-}
+.dcard-head .pill{font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 8px;
+  border-radius:20px;border:1px solid var(--line);color:var(--muted);}
 .dial-center{display:flex;justify-content:center;}
 .reb-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-.cnote{
-  font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);
-  text-align:center;margin-top:9px;line-height:1.55;
-}
+.cnote{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);
+  text-align:center;margin-top:9px;line-height:1.55;}
 .cnote b{color:var(--text);}
 /* Air spring */
 .air-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
@@ -115,9 +108,8 @@ input[type=range]::-moz-range-thumb{
   text-transform:uppercase;letter-spacing:.08em;}
 .acell .val{font-family:'IBM Plex Mono',monospace;font-size:20px;font-weight:600;margin-top:4px;}
 .acell .val small{font-size:11px;color:var(--muted);font-weight:400;}
-/* Footnote */
 .fn{font-size:11px;color:var(--faint);line-height:1.65;
-  border-top:1px solid var(--line);padding-top:13px;margin-top:6px;}
+  border-top:1px solid var(--line);padding-top:13px;margin-top:11px;}
 </style>
 </head>
 <body>
@@ -144,12 +136,11 @@ input[type=range]::-moz-range-thumb{
 </header>
 
 <div class="grid">
-  <!-- Left panel -->
   <div>
     <div class="panel">
       <p class="sec">Rider Weight</p>
-      <div class="wdisp"><span class="v" id="wVal">75</span><span class="u" id="wUnit">kg</span></div>
-      <input type="range" id="wSlider" min="40" max="140" value="75" step="1">
+      <div class="wdisp"><span class="v" id="wVal">63</span><span class="u" id="wUnit">kg</span></div>
+      <input type="range" id="wSlider" min="40" max="140" value="63" step="1">
       <div class="utog">
         <button id="uKg" class="on">KG</button>
         <button id="uLb">LB</button>
@@ -161,9 +152,7 @@ input[type=range]::-moz-range-thumb{
     </div>
   </div>
 
-  <!-- Right area -->
   <div class="rarea">
-    <!-- Compression -->
     <div class="dcard comp">
       <div class="dcard-head">
         <span class="title b">Compression — GRIP2</span>
@@ -173,17 +162,15 @@ input[type=range]::-moz-range-thumb{
       <p class="cnote">Turn fully <b>CW</b> to close (gentle stop) · count out <b>CCW</b></p>
     </div>
 
-    <!-- Rebound -->
     <div class="dcard reb">
       <div class="dcard-head">
         <span class="title o">Rebound — GRIP2</span>
         <span class="pill">LSR + HSR</span>
       </div>
       <div class="reb-row" id="rebRow"></div>
-      <p class="cnote" id="rebNote">Turn fully <b>CW</b> to close · count out <b>CCW</b></p>
+      <p class="cnote">Turn fully <b>CW</b> to close · count out <b>CCW</b></p>
     </div>
 
-    <!-- Air spring -->
     <div class="panel">
       <p class="sec">Air Spring — Fox 38 FLOAT 160mm</p>
       <div class="air-grid">
@@ -192,14 +179,13 @@ input[type=range]::-moz-range-thumb{
         <div class="acell"><div class="k">Sag 160mm</div><div class="val">24–32<small> mm</small></div></div>
         <div class="acell"><div class="k">Spacers</div><div class="val">3<small> of 6 max</small></div></div>
       </div>
-      <p class="fn" style="margin-top:11px;">
-        Air pressure from Fox 38 FLOAT official starting-point table (non e-bike). Max 140 PSI.
-        Set sag with all adjusters fully open (full CCW). Volume spacers: 3 yellow spacers
-        factory-installed at 160mm (PN 234-44-189, 10cc each); max 6. Fine-tune ±5–10 PSI
-        based on feel. All compression and rebound values are <em>clicks open CCW from fully closed
-        CW</em> (turn gently CW to stop — do not force). LSC: 0–18 clicks. HSC: 0–16 usable
-        clicks (Fox spec: beyond 16 clicks has no damping effect). Rebound from Fox GRIP2 official
-        table ± terrain offset, clamped 0–14.
+      <p class="fn">
+        Air pressure from Fox 38 FLOAT official starting-point table (non e-bike, 160mm).
+        Max 140 PSI. Set sag with all adjusters fully open (full CCW).
+        Volume spacers: 3 yellow spacers factory-installed at 160mm (PN 234-44-189, 10cc each); max 6.
+        Fine-tune ±5 PSI based on feel. All compression and rebound values are
+        <em>clicks open CCW from fully closed CW</em> (turn gently CW to stop — do not force).
+        HSC: 0–8 clicks · LSC: 0–16 clicks · Rebound from Fox GRIP2 official table ± terrain offset.
       </p>
     </div>
   </div>
@@ -207,8 +193,8 @@ input[type=range]::-moz-range-thumb{
 </div>
 
 <script>
-// ── Official Fox Data ──────────────────────────────────────────────────────────
-// Fox 38 FLOAT 160mm suggested starting pressure (non e-bike), from tech.ridefox.com
+// ── Official Fox Data (tech.ridefox.com) ───────────────────────────────────────
+// Fox 38 FLOAT 160mm suggested starting pressure, non e-bike
 const FOX38_AIR = [
   {maxKg:59,psi:72},{maxKg:64,psi:76},{maxKg:68,psi:80},{maxKg:73,psi:84},
   {maxKg:77,psi:89},{maxKg:82,psi:93},{maxKg:86,psi:97},{maxKg:91,psi:102},
@@ -226,42 +212,46 @@ const GRIP2_REB = [
 ];
 
 // Terrain presets
-// Compression = absolute clicks (Fox GRIP2 baseline: HSC=5, LSC=10)
+// Compression = absolute clicks · HSC max 8 clicks · LSC max 16 clicks
+// Fox GRIP2 baseline: HSC=5, LSC=10
 // Rebound = offset added to Fox weight-based table value
 const TERRAIN = [
-  {id:'rough', name:'Rough & Rocky',        sub:'Chatter, square edges, roots',   icon:'🪨',lsc:14,hsc:8, lsrOff:+2,hsrOff:+1},
-  {id:'trail', name:'All-Mountain / Trail', sub:'Mixed terrain, varied speed',    icon:'🚵',lsc:10,hsc:5, lsrOff: 0,hsrOff: 0},
-  {id:'enduro',name:'Enduro Race',          sub:'Steep, fast, high support',      icon:'🏁',lsc:7, hsc:3, lsrOff:-1,hsrOff:-1},
-  {id:'park',  name:'Bike Park / Big Jumps',sub:'Landings, compressions, lips',   icon:'🛫',lsc:9, hsc:3, lsrOff:-2,hsrOff:-2},
-  {id:'flow',  name:'Smooth Flow / Berms',  sub:'Fast, smooth, high G-force',     icon:'🌊',lsc:8, hsc:4, lsrOff:-1,hsrOff:-1},
+  {id:'rough', name:'Rough & Rocky',        sub:'Chatter, square edges, roots',  icon:'🪨',lsc:13,hsc:7,lsrOff:+2,hsrOff:+1},
+  {id:'trail', name:'All-Mountain / Trail', sub:'Mixed terrain, varied speed',   icon:'🚵',lsc:10,hsc:5,lsrOff: 0,hsrOff: 0},
+  {id:'enduro',name:'Enduro Race',          sub:'Steep, fast, high support',     icon:'🏁',lsc:7, hsc:3,lsrOff:-1,hsrOff:-1},
+  {id:'park',  name:'Bike Park / Big Jumps',sub:'Landings, compressions, lips',  icon:'🛫',lsc:9, hsc:2,lsrOff:-2,hsrOff:-2},
+  {id:'flow',  name:'Smooth Flow / Berms',  sub:'Fast, smooth, high G-force',    icon:'🌊',lsc:8, hsc:3,lsrOff:-1,hsrOff:-1},
 ];
 
+// ── Adjuster ranges ────────────────────────────────────────────────────────────
+const HSC_MAX = 8;   // 8 detent clicks on the outer blue ring
+const LSC_MAX = 16;  // 16 detent clicks on the inner black dial
+
 // ── State ──────────────────────────────────────────────────────────────────────
-let state = {unit:'kg', weightKg:75, terrain:'trail'};
+let state = {unit:'kg', weightKg:63, terrain:'trail'};
 
 // ── Lookups ────────────────────────────────────────────────────────────────────
-function getAirPsi(kg) {
+function getAirPsi(kg){
   return (FOX38_AIR.find(e=>kg<=e.maxKg)||FOX38_AIR.at(-1)).psi;
 }
-function getRebound(kg, lsrOff, hsrOff) {
-  const e = GRIP2_REB.find(e=>kg<=e.maxKg)||GRIP2_REB.at(-1);
-  return {
-    lsr: Math.max(0,Math.min(14,e.lsr+lsrOff)),
-    hsr: Math.max(0,Math.min(14,e.hsr+hsrOff))
-  };
+function getRebound(kg,lsrOff,hsrOff){
+  const e=GRIP2_REB.find(e=>kg<=e.maxKg)||GRIP2_REB.at(-1);
+  return {lsr:Math.max(0,Math.min(14,e.lsr+lsrOff)), hsr:Math.max(0,Math.min(14,e.hsr+hsrOff))};
 }
 
 // ── SVG Geometry ──────────────────────────────────────────────────────────────
+// Angle convention: 0° = 12 o'clock, increasing clockwise
 function pxy(cx,cy,r,deg){
   const a=(deg-90)*Math.PI/180;
-  return {x:cx+r*Math.cos(a),y:cy+r*Math.sin(a)};
+  return {x:cx+r*Math.cos(a), y:cy+r*Math.sin(a)};
 }
+// Clockwise arc SVG path from a0 to a1
 function cwArc(cx,cy,r,a0,a1){
-  const p=pxy(cx,cy,r,a0),q=pxy(cx,cy,r,a1);
+  const p=pxy(cx,cy,r,a0), q=pxy(cx,cy,r,a1);
   let s=(a1-a0+360)%360; if(s===0)s=360;
   return `M${p.x.toFixed(2)},${p.y.toFixed(2)} A${r},${r} 0 ${s>180?1:0} 1 ${q.x.toFixed(2)},${q.y.toFixed(2)}`;
 }
-// Draw nDashes on a CW arc from startDeg spanning totalDeg; first litCount are lit
+// n dashes on a CW arc from startDeg spanning totalDeg; first litCount coloured cLit, rest cDim
 function dashArc(cx,cy,r,n,lit,cLit,cDim,startDeg,totalDeg,sw){
   const span=totalDeg/n, fill=span*0.60;
   return Array.from({length:n},(_,i)=>{
@@ -277,54 +267,63 @@ function hexPts(cx,cy,r){
 }
 
 // ── Compression Dial SVG ──────────────────────────────────────────────────────
-// Combined HSC (outer blue ring) + LSC (inner black cross)
-// Outer arc: 270° / 18 dashes / LSC / gap at bottom (225°→135° CW)
-// Inner arc:  90° / 8 dashes  / HSC / gap at bottom (315°→45°  CW, top-arc only)
-// Both indicators start at 225° when closed, rotate CCW as clicks increase
-function buildCompressionSVG(hsc, lsc) {
-  const cx=116,cy=152;
+// Canvas: 232 × 282.  Dial centre: (116, 152).
+//
+// Arc indicators (outside the housing):
+//   OUTER — LSC: 270° arc from 225° CW, gap at bottom, 16 dashes (1 per click)
+//            grey when unlit, white/light when lit
+//   INNER — HSC:  90° arc from 315° CW (top only), gap at bottom, 8 dashes (1 per click)
+//            grey when unlit, blue when lit
+//
+// Physical indicators on the dial rotate CCW as clicks increase:
+//   HSC ring: starts at 225° (7:30), travels 90° CCW over 8 clicks → 11.25° per click
+//   LSC dial: starts at 225° (7:30), travels 270° CCW over 16 clicks → 16.875° per click
+function buildCompressionSVG(hsc, lsc){
+  const cx=116, cy=152;
 
-  // Arc lit counts
-  const lscLit = lsc;                    // 0-18, one dash per click
-  const hscLit = Math.ceil(hsc/2);       // 0-8,  one dash per 2 clicks
+  // Arc lit counts — 1 dash per click for both adjusters
+  const hscLit = hsc;   // 0–8
+  const lscLit = lsc;   // 0–16
 
-  const lscArcs = dashArc(cx,cy,112,18,lscLit,'#d0d4d8','#2a2e33',225,270,10);
-  const hscArcs = dashArc(cx,cy,99, 8, hscLit,'#3a9bdc','#0e1e2e',315, 90,10);
+  const lscArcs = dashArc(cx,cy,112, 16, lscLit, '#d0d4d8','#2a2e33', 225,270, 10);
+  const hscArcs = dashArc(cx,cy, 99,  8, hscLit, '#3a9bdc','#0e1e2e', 315, 90, 10);
 
-  // Physical indicator angles: 0 clicks→225°, rotate CCW
-  const hscAng = 225 - hsc*(180/16);   // HSC ring: 180° total travel over 16 clicks
-  const lscAng = 225 - lsc*(270/18);   // LSC dial: 270° total travel over 18 clicks
+  // Physical indicator angles (CCW from 225°)
+  const hscAng = 225 - hsc * (90  / HSC_MAX);  // 90° total / 8 clicks  = 11.25°/click
+  const lscAng = 225 - lsc * (270 / LSC_MAX);  // 270° total / 16 clicks = 16.875°/click
 
-  // Arc end labels
+  // HSC ring indicator stripe endpoints
+  const hi1=pxy(cx,cy,61,hscAng), hi2=pxy(cx,cy,71,hscAng);
+  // LSC cross indicator stripe endpoints
+  const li1=pxy(cx,cy,19,lscAng), li2=pxy(cx,cy,42,lscAng);
+
+  // Arc-end labels
   function arcLbl(r,deg,txt,anc){
     const p=pxy(cx,cy,r,deg);
     return `<text x="${p.x.toFixed(1)}" y="${(p.y+3.5).toFixed(1)}" text-anchor="${anc}" font-family="IBM Plex Mono,monospace" font-size="7.5" fill="#4a5060">${txt}</text>`;
   }
 
-  // Knurling (all 360° - uniform, rotation doesn't change appearance)
-  const knurl = Array.from({length:64},(_,i)=>{
+  // Knurling — 64 notches evenly around the HSC ring outer edge
+  // (uniform → looks identical regardless of rotation)
+  const knurl=Array.from({length:64},(_,i)=>{
     const a=i*(360/64), p1=pxy(cx,cy,68,a), p2=pxy(cx,cy,73,a);
     return `<line x1="${p1.x.toFixed(1)}" y1="${p1.y.toFixed(1)}" x2="${p2.x.toFixed(1)}" y2="${p2.y.toFixed(1)}" stroke="#000" stroke-opacity=".38" stroke-width="1.5"/>`;
   }).join('');
 
-  // HSC ring indicator (white stripe pointing at hscAng)
-  const hi1=pxy(cx,cy,61,hscAng), hi2=pxy(cx,cy,71,hscAng);
-
-  // LSC cross indicator stripe (pointing at lscAng)
-  const li1=pxy(cx,cy,19,lscAng), li2=pxy(cx,cy,42,lscAng);
-
-  // Curved "VVC HIGH SPEED COMPRESSION" text path on ring
-  // Text arc placed so it rotates with the ring (in screen coords based on hscAng)
-  const txtStart = hscAng+30, txtEnd = hscAng+190;
+  // Curved text paths on the blue ring (follow the ring rotation)
   const tpId=`tp${hsc}x${lsc}`, gpId=`gp${hsc}x${lsc}`;
+  const textArcStart=hscAng+30, textArcEnd=hscAng+190;
+  const gripArcStart=hscAng+200, gripArcEnd=hscAng+255;
 
-  // LSC cross path (centred at cx,cy)
+  // LSC cross path
   const aw=10,at=6,arm=46;
-  const xp=`M${cx-at},${cy-arm} L${cx+at},${cy-arm} L${cx+aw},${cy-aw} L${cx+arm},${cy-at} L${cx+arm},${cy+at} L${cx+aw},${cy+aw} L${cx+at},${cy+arm} L${cx-at},${cy+arm} L${cx-aw},${cy+aw} L${cx-arm},${cy+at} L${cx-arm},${cy-at} L${cx-aw},${cy-aw} Z`;
+  const xp=`M${cx-at},${cy-arm} L${cx+at},${cy-arm} L${cx+aw},${cy-aw} L${cx+arm},${cy-at} `+
+           `L${cx+arm},${cy+at} L${cx+aw},${cy+aw} L${cx+at},${cy+arm} L${cx-at},${cy+arm} `+
+           `L${cx-aw},${cy+aw} L${cx-arm},${cy+at} L${cx-arm},${cy-at} L${cx-aw},${cy-aw} Z`;
 
-  // Cross arm labels rotate with dial (use lscAng-relative positions)
-  const lp = (r,deg) => pxy(cx,cy,r,lscAng+deg);
-  const lTop=lp(32,0), lRt=lp(32,90), lBt=lp(35,180), lLt=lp(32,270);
+  // LSC dial labels — rotate with dial position so they stay on correct arms
+  function lp(r,deg){ return pxy(cx,cy,r,lscAng+deg); }
+  const lTop=lp(32,0), lRt=lp(32,90), lLt=lp(32,270), lBt=lp(36,180);
 
   return `<svg viewBox="0 0 232 282" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:240px;">
 <defs>
@@ -332,45 +331,50 @@ function buildCompressionSVG(hsc, lsc) {
     <stop offset="0%" stop-color="#3a3e44"/><stop offset="100%" stop-color="#14171a"/>
   </radialGradient>
   <radialGradient id="rg" cx="36%" cy="30%" r="76%">
-    <stop offset="0%" stop-color="#58bafa"/><stop offset="42%" stop-color="#1e78c0"/><stop offset="100%" stop-color="#081e30"/>
+    <stop offset="0%" stop-color="#58bafa"/><stop offset="42%" stop-color="#1e78c0"/>
+    <stop offset="100%" stop-color="#081e30"/>
   </radialGradient>
   <radialGradient id="ig" cx="38%" cy="32%" r="70%">
     <stop offset="0%" stop-color="#2e3438"/><stop offset="100%" stop-color="#14171a"/>
   </radialGradient>
   <filter id="ds"><feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000" flood-opacity=".5"/></filter>
-  <path id="${tpId}" d="${cwArc(cx,cy,65,txtStart,txtEnd)}"/>
-  <path id="${gpId}" d="${cwArc(cx,cy,65,hscAng+200,hscAng+260)}"/>
+  <path id="${tpId}" d="${cwArc(cx,cy,65,textArcStart,textArcEnd)}"/>
+  <path id="${gpId}" d="${cwArc(cx,cy,65,gripArcStart,gripArcEnd)}"/>
 </defs>
 
-<!-- Click labels -->
-<text x="5" y="17" font-family="IBM Plex Mono,monospace" font-size="11" font-weight="600" fill="#3a9bdc">HSC <tspan font-size="17" dy="1">${hsc}</tspan><tspan font-size="10" dy="-1" fill="#4a6070"> clicks</tspan></text>
-<text x="227" y="17" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="11" font-weight="600" fill="#d0d4d8">LSC <tspan font-size="17" dy="1">${lsc}</tspan><tspan font-size="10" dy="-1" fill="#4a6070"> clicks</tspan></text>
+<!-- Click labels: HSC top-left, LSC top-right -->
+<text x="5" y="17" font-family="IBM Plex Mono,monospace" font-size="11" font-weight="600" fill="#3a9bdc">
+  HSC <tspan font-size="18" dy="1">${hsc}</tspan><tspan font-size="10" dy="-1" fill="#4a6070"> / ${HSC_MAX} clicks</tspan>
+</text>
+<text x="227" y="17" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="11" font-weight="600" fill="#d0d4d8">
+  LSC <tspan font-size="18" dy="1">${lsc}</tspan><tspan font-size="10" dy="-1" fill="#4a6070"> / ${LSC_MAX} clicks</tspan>
+</text>
 
-<!-- LSC arc: 270°, 18 dashes, gap at bottom -->
+<!-- LSC outer arc: 270°, 16 dashes, 1 per click, gap at bottom -->
 ${lscArcs}
-<!-- HSC arc: 90°, 8 dashes, top only -->
+<!-- HSC inner arc: 90°, 8 dashes, 1 per click, top section only -->
 ${hscArcs}
 
 <!-- Arc end labels -->
 ${arcLbl(117,222,'CW','end')}
 ${arcLbl(117,138,'CCW','start')}
 
-<!-- Outer housing -->
+<!-- Outer housing (dark anodised aluminium) -->
 <circle cx="${cx}" cy="${cy}" r="80" fill="url(#hg)" stroke="#0a0b0d" stroke-width="1.5" filter="url(#ds)"/>
 <circle cx="${cx}" cy="${cy}" r="80" fill="none" stroke="#363a3f" stroke-width=".7" opacity=".5"/>
 
-<!-- Blue HSC ring (outer; rotates CCW from 225° as clicks increase) -->
+<!-- Blue HSC outer ring -->
 <circle cx="${cx}" cy="${cy}" r="73" fill="url(#rg)"/>
 <circle cx="${cx}" cy="${cy}" r="58" fill="url(#hg)"/>
-<circle cx="${cx}" cy="${cy}" r="73" fill="none" stroke="#6ab9f5" stroke-width=".8" opacity=".35"/>
-<circle cx="${cx}" cy="${cy}" r="58" fill="none" stroke="#000" stroke-width="1.5"/>
 <!-- Rim ambient occlusion -->
 <circle cx="${cx}" cy="${cy}" r="73" fill="none" stroke="#000" stroke-width="14" stroke-opacity=".28"/>
+<circle cx="${cx}" cy="${cy}" r="73" fill="none" stroke="#6ab9f5" stroke-width=".8" opacity=".3"/>
+<circle cx="${cx}" cy="${cy}" r="58" fill="none" stroke="#000" stroke-width="1.5"/>
 
-<!-- Knurling on ring -->
+<!-- Knurling -->
 ${knurl}
 
-<!-- Curved text on ring (rotates with ring position) -->
+<!-- Curved text on ring (rotates with ring) -->
 <text font-family="Arial,sans-serif" font-size="5" fill="rgba(255,255,255,.72)" letter-spacing=".55">
   <textPath href="#${tpId}">VVC HIGH SPEED COMPRESSION  I  +</textPath>
 </text>
@@ -379,27 +383,30 @@ ${knurl}
 </text>
 
 <!-- Decorative sweep arcs on ring (matching real dial) -->
-<path d="${cwArc(cx,cy,67,hscAng+28,hscAng+80)}" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="4" stroke-linecap="round"/>
-<path d="${cwArc(cx,cy,67,hscAng+195,hscAng+235)}" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="3.5" stroke-linecap="round"/>
+<path d="${cwArc(cx,cy,67,hscAng+28, hscAng+80)}"  fill="none" stroke="rgba(255,255,255,.18)" stroke-width="4"   stroke-linecap="round"/>
+<path d="${cwArc(cx,cy,67,hscAng+195,hscAng+235)}" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="3.5" stroke-linecap="round"/>
 
 <!-- HSC indicator stripe (white, on blue ring) -->
-<line x1="${hi1.x.toFixed(1)}" y1="${hi1.y.toFixed(1)}" x2="${hi2.x.toFixed(1)}" y2="${hi2.y.toFixed(1)}" stroke="rgba(255,255,255,.93)" stroke-width="5.5" stroke-linecap="round"/>
+<line x1="${hi1.x.toFixed(1)}" y1="${hi1.y.toFixed(1)}" x2="${hi2.x.toFixed(1)}" y2="${hi2.y.toFixed(1)}"
+  stroke="rgba(255,255,255,.93)" stroke-width="5.5" stroke-linecap="round"/>
 
-<!-- LSC cross dial (inner; rotates CCW from 225° as clicks increase) -->
+<!-- LSC inner cross dial -->
 <path d="${xp}" fill="url(#ig)" stroke="#111" stroke-width="1.5"/>
 <path d="${xp}" fill="none" stroke="rgba(255,255,255,.04)" stroke-width=".8"/>
 
-<!-- LSC labels (rotate with dial) -->
+<!-- LSC arm labels (rotate with dial) -->
 <text x="${lTop.x.toFixed(1)}" y="${(lTop.y+3).toFixed(1)}" text-anchor="middle" font-family="Arial,sans-serif" font-size="6.5" font-weight="700" fill="#9aa0a6" letter-spacing=".5">LSC</text>
-<text x="${lRt.x.toFixed(1)}" y="${(lRt.y+4).toFixed(1)}" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="700" fill="#9aa0a6">+</text>
-<text x="${lLt.x.toFixed(1)}" y="${(lLt.y+3).toFixed(1)}" text-anchor="middle" font-family="Arial,sans-serif" font-size="8" font-weight="700" fill="#9aa0a6">I</text>
-<text x="${lBt.x.toFixed(1)}" y="${(lBt.y+2).toFixed(1)}" text-anchor="middle" font-family="Arial,sans-serif" font-size="5.5" font-weight="700" fill="#4a5060" letter-spacing="2">FOX</text>
+<text x="${lRt.x.toFixed(1)}"  y="${(lRt.y+4).toFixed(1)}"  text-anchor="middle" font-family="Arial,sans-serif" font-size="10"  font-weight="700" fill="#9aa0a6">+</text>
+<text x="${lLt.x.toFixed(1)}"  y="${(lLt.y+3).toFixed(1)}"  text-anchor="middle" font-family="Arial,sans-serif" font-size="8"   font-weight="700" fill="#9aa0a6">I</text>
+<text x="${lBt.x.toFixed(1)}"  y="${(lBt.y+2).toFixed(1)}"  text-anchor="middle" font-family="Arial,sans-serif" font-size="5.5" font-weight="700" fill="#4a5060" letter-spacing="2">FOX</text>
 
 <!-- LSC indicator stripe -->
-<line x1="${li1.x.toFixed(1)}" y1="${li1.y.toFixed(1)}" x2="${li2.x.toFixed(1)}" y2="${li2.y.toFixed(1)}" stroke="rgba(255,255,255,.88)" stroke-width="3.5" stroke-linecap="round"/>
-<line x1="${li1.x.toFixed(1)}" y1="${li1.y.toFixed(1)}" x2="${li2.x.toFixed(1)}" y2="${li2.y.toFixed(1)}" stroke="rgba(150,165,180,.5)" stroke-width="1.2" stroke-linecap="round"/>
+<line x1="${li1.x.toFixed(1)}" y1="${li1.y.toFixed(1)}" x2="${li2.x.toFixed(1)}" y2="${li2.y.toFixed(1)}"
+  stroke="rgba(255,255,255,.88)" stroke-width="3.5" stroke-linecap="round"/>
+<line x1="${li1.x.toFixed(1)}" y1="${li1.y.toFixed(1)}" x2="${li2.x.toFixed(1)}" y2="${li2.y.toFixed(1)}"
+  stroke="rgba(150,165,180,.48)" stroke-width="1.2" stroke-linecap="round"/>
 
-<!-- Centre hex bolt -->
+<!-- Centre hex bolt (fixed) -->
 <circle cx="${cx}" cy="${cy}" r="11" fill="#101214" stroke="#2a2e33" stroke-width="1"/>
 <polygon points="${hexPts(cx,cy,7)}" fill="#1c2024" stroke="#3a3d42" stroke-width=".5"/>
 <circle cx="${cx}" cy="${cy}" r="3.5" fill="#2a2d32"/>
@@ -407,10 +414,10 @@ ${knurl}
 }
 
 // ── Rebound Dial SVG ──────────────────────────────────────────────────────────
-function buildReboundSVG(clicks, maxClicks, label) {
-  const cx=80,cy=96;
-  const lit=clicks;
-  const arcs=dashArc(cx,cy,66,maxClicks,lit,'#e07030','#2a1208',225,270,8);
+// 270° arc from 225° CW, gap at bottom. Indicator follows arc position.
+function buildReboundSVG(clicks, maxClicks, label){
+  const cx=80, cy=96;
+  const arcs=dashArc(cx,cy,66, maxClicks, clicks, '#e07030','#2a1208', 225,270, 8);
   const indDeg=225+(clicks/maxClicks)*270;
   const p1=pxy(cx,cy,16,indDeg), p2=pxy(cx,cy,48,indDeg);
 
@@ -419,34 +426,30 @@ function buildReboundSVG(clicks, maxClicks, label) {
     return `<text x="${p.x.toFixed(1)}" y="${(p.y+3).toFixed(1)}" text-anchor="${anc}" font-family="IBM Plex Mono,monospace" font-size="7" fill="#4a5060">${txt}</text>`;
   }
 
-  // Knurl (lighter, smaller dial)
   const kn=Array.from({length:48},(_,i)=>{
-    const a=i*(360/48),p1=pxy(cx,cy,52,a),p2=pxy(cx,cy,56,a);
+    const a=i*(360/48), p1=pxy(cx,cy,52,a), p2=pxy(cx,cy,56,a);
     return `<line x1="${p1.x.toFixed(1)}" y1="${p1.y.toFixed(1)}" x2="${p2.x.toFixed(1)}" y2="${p2.y.toFixed(1)}" stroke="#000" stroke-opacity=".35" stroke-width="1.3"/>`;
   }).join('');
 
   return `<svg viewBox="0 0 160 170" xmlns="http://www.w3.org/2000/svg" style="width:100%;">
 <defs>
-  <radialGradient id="rkg" cx="38%" cy="32%" r="70%">
+  <radialGradient id="rkg${label}" cx="38%" cy="32%" r="70%">
     <stop offset="0%" stop-color="#3a3e44"/><stop offset="100%" stop-color="#14171a"/>
   </radialGradient>
-  <radialGradient id="rig" cx="38%" cy="32%" r="68%">
+  <radialGradient id="rig${label}" cx="38%" cy="32%" r="68%">
     <stop offset="0%" stop-color="#272c30"/><stop offset="100%" stop-color="#12151a"/>
   </radialGradient>
-  <filter id="rds"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity=".5"/></filter>
+  <filter id="rds${label}"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity=".5"/></filter>
 </defs>
-<text x="${cx}" y="18" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" font-weight="600" fill="#e07030">${label}</text>
-<text x="${cx}" y="33" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="20" font-weight="600" fill="#e07030">${clicks}<tspan font-size="11" fill="#5a6070"> clicks</tspan></text>
-
+<text x="${cx}" y="17" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" font-weight="600" fill="#e07030">${label}</text>
+<text x="${cx}" y="32" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="20" font-weight="600" fill="#e07030">${clicks}<tspan font-size="10" fill="#5a6070"> / ${maxClicks} clicks</tspan></text>
 ${arcs}
 ${aLbl(70,222,'CW','end')}
 ${aLbl(70,138,'CCW','start')}
-
-<circle cx="${cx}" cy="${cy}" r="56" fill="url(#rkg)" stroke="#0a0b0d" stroke-width="1.5" filter="url(#rds)"/>
-<circle cx="${cx}" cy="${cy}" r="42" fill="url(#rig)" stroke="#000" stroke-width="1.2"/>
+<circle cx="${cx}" cy="${cy}" r="56" fill="url(#rkg${label})" stroke="#0a0b0d" stroke-width="1.5" filter="url(#rds${label})"/>
+<circle cx="${cx}" cy="${cy}" r="42" fill="url(#rig${label})" stroke="#000" stroke-width="1.2"/>
 <circle cx="${cx}" cy="${cy}" r="56" fill="none" stroke="#000" stroke-width="10" stroke-opacity=".25"/>
 ${kn}
-<!-- Indicator -->
 <line x1="${p1.x.toFixed(1)}" y1="${p1.y.toFixed(1)}" x2="${p2.x.toFixed(1)}" y2="${p2.y.toFixed(1)}" stroke="#e07030" stroke-width="4" stroke-linecap="round"/>
 <line x1="${p1.x.toFixed(1)}" y1="${p1.y.toFixed(1)}" x2="${p2.x.toFixed(1)}" y2="${p2.y.toFixed(1)}" stroke="rgba(255,255,255,.2)" stroke-width="1.3" stroke-linecap="round"/>
 <circle cx="${cx}" cy="${cy}" r="7" fill="#101214" stroke="#2a2e33" stroke-width=".8"/>
@@ -455,18 +458,18 @@ ${kn}
 }
 
 // ── Render ─────────────────────────────────────────────────────────────────────
-function renderTerrain() {
+function renderTerrain(){
   const wrap=document.getElementById('terrainList');
   wrap.innerHTML=TERRAIN.map(t=>`
     <button class="tbtn${t.id===state.terrain?' on':''}" data-id="${t.id}">
-      <span class="ic">${t.icon}</span>
+      <span style="font-size:18px">${t.icon}</span>
       <span><strong>${t.name}</strong><small>${t.sub}</small></span>
     </button>`).join('');
   wrap.querySelectorAll('.tbtn').forEach(b=>
     b.addEventListener('click',()=>{state.terrain=b.dataset.id;renderAll();}));
 }
 
-function renderDials() {
+function renderDials(){
   const t=TERRAIN.find(t=>t.id===state.terrain);
   const reb=getRebound(state.weightKg,t.lsrOff,t.hsrOff);
   document.getElementById('compDial').innerHTML=buildCompressionSVG(t.hsc,t.lsc);
@@ -475,11 +478,11 @@ function renderDials() {
      <div>${buildReboundSVG(reb.hsr,14,'HSR')}</div>`;
 }
 
-function renderAir() {
+function renderAir(){
   document.getElementById('airPsi').innerHTML=`${getAirPsi(state.weightKg)}<small> PSI</small>`;
 }
 
-function renderWeight() {
+function renderWeight(){
   const v=state.unit==='kg'?Math.round(state.weightKg):Math.round(state.weightKg*2.20462);
   document.getElementById('wVal').textContent=v;
   document.getElementById('wUnit').textContent=state.unit;
@@ -514,7 +517,6 @@ document.getElementById('uLb').addEventListener('click',()=>{
   renderWeight();
 });
 
-// Service worker
 if('serviceWorker' in navigator){
   window.addEventListener('load',()=>navigator.serviceWorker.register('service-worker.js').catch(()=>{}));
 }
