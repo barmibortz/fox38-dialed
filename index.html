@@ -16,9 +16,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#15171a; --panel:#1d2023; --panel2:#23262a; --line:#2e3236;
-  --gold:#c9a227; --text:#edeae3; --muted:#8b9097; --faint:#4a5060;
-  --blue:#3a9bdc; --grey:#dde2e8; --orange:#e07030;
+  --bg:#15171a;--panel:#1d2023;--panel2:#23262a;--line:#2e3236;
+  --gold:#c9a227;--text:#edeae3;--muted:#8b9097;--faint:#4a5060;
+  --blue:#3a9bdc;--grey:#dde2e8;--orange:#e07030;--amber:#c89020;
   --seg-dim:#52596a;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -28,7 +28,6 @@ body{
   min-height:100vh;padding:20px 14px 50px;
 }
 .wrap{max-width:1060px;margin:0 auto;}
-
 header{
   display:flex;align-items:flex-end;justify-content:space-between;gap:12px;
   border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:20px;flex-wrap:wrap;
@@ -42,15 +41,12 @@ header{
   border-radius:20px;border:1px solid var(--line);color:var(--muted);}
 .hbadge.b{border-color:var(--blue);color:var(--blue);}
 .hbadge.o{border-color:var(--orange);color:var(--orange);}
-
 .main-grid{display:grid;grid-template-columns:270px 1fr;gap:16px;align-items:start;}
 @media(max-width:780px){.main-grid{grid-template-columns:1fr;}}
-
 .panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;}
 .panel+.panel{margin-top:13px;}
 .sec{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;
   text-transform:uppercase;color:var(--gold);margin-bottom:11px;}
-
 .wrow{display:flex;align-items:baseline;gap:4px;margin-bottom:2px;}
 .wval{font-family:'IBM Plex Mono',monospace;font-size:32px;font-weight:600;}
 .wunit{font-size:13px;color:var(--muted);}
@@ -64,7 +60,8 @@ input[type=range]::-webkit-slider-thumb{
   background:var(--text);border:3px solid var(--gold);cursor:pointer;
 }
 input[type=range]::-moz-range-thumb{
-  width:18px;height:18px;border-radius:50%;background:var(--text);border:3px solid var(--gold);cursor:pointer;
+  width:18px;height:18px;border-radius:50%;background:var(--text);
+  border:3px solid var(--gold);cursor:pointer;
 }
 .utog{display:flex;gap:6px;margin-top:8px;}
 .utog button{
@@ -73,7 +70,6 @@ input[type=range]::-moz-range-thumb{
   border-radius:6px;cursor:pointer;transition:all .12s;
 }
 .utog button.on{color:var(--bg);background:var(--gold);border-color:var(--gold);font-weight:600;}
-
 .tbtn{
   display:flex;align-items:center;gap:10px;width:100%;text-align:left;
   background:var(--panel2);border:1px solid var(--line);color:var(--text);
@@ -83,11 +79,10 @@ input[type=range]::-moz-range-thumb{
 .tbtn:last-child{margin-bottom:0;}
 .tbtn small{display:block;color:var(--muted);font-size:10.5px;margin-top:1px;}
 .tbtn.on{border-color:var(--gold);background:#251f0d;}
-
 .right-col{display:flex;flex-direction:column;gap:13px;}
+/* Two dial cards side by side */
 .dial-row{display:grid;grid-template-columns:1fr 1fr;gap:13px;}
 @media(max-width:580px){.dial-row{grid-template-columns:1fr;}}
-
 .dcard{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px;}
 .dcard.comp{border-top:3px solid var(--blue);}
 .dcard.reb{border-top:3px solid var(--orange);}
@@ -97,14 +92,12 @@ input[type=range]::-moz-range-thumb{
 .dcard-title.o{color:var(--orange);}
 .dcard-pill{font-family:'IBM Plex Mono',monospace;font-size:9.5px;padding:2px 7px;
   border-radius:20px;border:1px solid var(--line);color:var(--muted);}
+/* SVG wrapper — caps size on desktop, centres on mobile */
 .svg-wrap{display:flex;justify-content:center;}
 .svg-wrap svg{width:100%;max-width:220px;display:block;}
-.reb-inner{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.reb-inner svg{width:100%;max-width:130px;display:block;margin:0 auto;}
 .cnote{font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:var(--muted);
   text-align:center;margin-top:9px;line-height:1.5;}
 .cnote b{color:var(--text);}
-
 .air-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;}
 @media(max-width:580px){.air-grid{grid-template-columns:repeat(2,1fr);}}
 .acell{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:11px;}
@@ -118,7 +111,6 @@ input[type=range]::-moz-range-thumb{
 </head>
 <body>
 <div class="wrap">
-
 <header>
   <div class="brand">
     <svg width="34" height="34" viewBox="0 0 34 34">
@@ -165,18 +157,18 @@ input[type=range]::-moz-range-thumb{
       <div class="dcard comp">
         <div class="dcard-head">
           <span class="dcard-title b">Compression</span>
-          <span class="dcard-pill">HSC + LSC</span>
+          <span class="dcard-pill">HSC · LSC</span>
         </div>
         <div class="svg-wrap" id="compDial"></div>
-        <p class="cnote">Segments fill <b>CCW</b> from closed (right) · turn CW to close</p>
+        <p class="cnote">Outer = HSC (8) · Inner = LSC (16)<br>Fills <b>CCW</b> from closed (right)</p>
       </div>
       <div class="dcard reb">
         <div class="dcard-head">
           <span class="dcard-title o">Rebound</span>
-          <span class="dcard-pill">LSR + HSR</span>
+          <span class="dcard-pill">HSR · LSR</span>
         </div>
-        <div class="reb-inner" id="rebDials"></div>
-        <p class="cnote">Segments fill <b>CCW</b> from closed (right) · turn CW to close</p>
+        <div class="svg-wrap" id="rebDial"></div>
+        <p class="cnote">Outer = HSR (8) · Inner = LSR (16)<br>Fills <b>CCW</b> from closed (right)</p>
       </div>
     </div>
 
@@ -194,8 +186,8 @@ input[type=range]::-moz-range-thumb{
       Air pressure from Fox 38 FLOAT official table (non e-bike, 160 mm). Max 140 PSI.
       Set sag with all adjusters fully open CCW. Volume spacers: 3 yellow factory-installed
       (PN 234-44-189, 10 cc each); max 6. All values are whole clicks open CCW from fully
-      closed CW (gently CW to stop — never force). HSC 0–8 clicks · LSC 0–16 clicks ·
-      LSR 0–16 clicks · HSR 0–8 clicks. Rebound from Fox GRIP2 official table ± terrain offset.
+      closed CW (gently to stop — never force). Outer arc = high speed (0–8 clicks) ·
+      Inner arc = low speed (0–16 clicks). Rebound from Fox GRIP2 table ± terrain offset.
     </p>
   </div>
 </div>
@@ -203,15 +195,15 @@ input[type=range]::-moz-range-thumb{
 
 <script>
 // ═══════════════════════════════════════════════════════════
-//  ADJUSTER LIMITS  (confirmed from actual fork)
+//  CONFIRMED ADJUSTER CLICK LIMITS
 // ═══════════════════════════════════════════════════════════
-const HSC_MAX = 8;   // High Speed Compression  — outer blue ring
-const LSC_MAX = 16;  // Low Speed Compression   — inner black dial
-const HSR_MAX = 8;   // High Speed Rebound
-const LSR_MAX = 16;  // Low Speed Rebound
+const HSC_MAX = 8;
+const LSC_MAX = 16;
+const HSR_MAX = 8;
+const LSR_MAX = 16;
 
 // ═══════════════════════════════════════════════════════════
-//  FOX OFFICIAL DATA  (tech.ridefox.com 2022 38 mm)
+//  FOX OFFICIAL DATA  (tech.ridefox.com — 2022 38 mm)
 // ═══════════════════════════════════════════════════════════
 const AIR_TABLE = [
   {maxKg:59,psi:72},{maxKg:64,psi:76},{maxKg:68,psi:80},{maxKg:73,psi:84},
@@ -226,56 +218,46 @@ const REB_TABLE = [
   {maxKg:100,lsr:3,hsr:2},{maxKg:104,lsr:2,hsr:1},{maxKg:109,lsr:2,hsr:1},
   {maxKg:Infinity,lsr:1,hsr:0}
 ];
-
-// ═══════════════════════════════════════════════════════════
-//  TERRAIN PRESETS
-// ═══════════════════════════════════════════════════════════
 const TERRAIN = [
-  {id:'rough', icon:'🪨',name:'Rough & Rocky',        sub:'Chatter, square edges, roots',  lsc:13,hsc:7,lsrOff:+2,hsrOff:+1},
-  {id:'trail', icon:'🚵',name:'All-Mountain / Trail', sub:'Mixed terrain, varied speed',   lsc:10,hsc:5,lsrOff: 0,hsrOff: 0},
-  {id:'enduro',icon:'🏁',name:'Enduro Race',          sub:'Steep, fast, high support',     lsc:7, hsc:3,lsrOff:-1,hsrOff:-1},
-  {id:'park',  icon:'🛫',name:'Bike Park / Big Jumps',sub:'Landings, compressions, lips',  lsc:9, hsc:2,lsrOff:-2,hsrOff:-2},
-  {id:'flow',  icon:'🌊',name:'Smooth Flow / Berms',  sub:'Fast, smooth, high G-force',    lsc:8, hsc:3,lsrOff:-1,hsrOff:-1},
+  {id:'rough',icon:'🪨',name:'Rough & Rocky',       sub:'Chatter, square edges, roots', lsc:13,hsc:7,lsrOff:+2,hsrOff:+1},
+  {id:'trail',icon:'🚵',name:'All-Mountain / Trail',sub:'Mixed terrain, varied speed',  lsc:10,hsc:5,lsrOff: 0,hsrOff: 0},
+  {id:'enduro',icon:'🏁',name:'Enduro Race',         sub:'Steep, fast, high support',    lsc:7, hsc:3,lsrOff:-1,hsrOff:-1},
+  {id:'park', icon:'🛫',name:'Bike Park / Big Jumps',sub:'Landings, compressions, lips', lsc:9, hsc:2,lsrOff:-2,hsrOff:-2},
+  {id:'flow', icon:'🌊',name:'Smooth Flow / Berms',  sub:'Fast, smooth, high G-force',   lsc:8, hsc:3,lsrOff:-1,hsrOff:-1},
 ];
 
 const state = {unit:'kg', weightKg:63, terrain:'trail'};
-
 function airPsi(kg)  { return (AIR_TABLE.find(e=>kg<=e.maxKg)||AIR_TABLE.at(-1)).psi; }
-function getRebound(kg,lsrOff,hsrOff) {
-  const e = REB_TABLE.find(e=>kg<=e.maxKg)||REB_TABLE.at(-1);
-  return { lsr:Math.max(0,Math.min(LSR_MAX,e.lsr+lsrOff)), hsr:Math.max(0,Math.min(HSR_MAX,e.hsr+hsrOff)) };
+function getReb(kg,lsrOff,hsrOff) {
+  const e=REB_TABLE.find(e=>kg<=e.maxKg)||REB_TABLE.at(-1);
+  return {lsr:Math.max(0,Math.min(LSR_MAX,e.lsr+lsrOff)), hsr:Math.max(0,Math.min(HSR_MAX,e.hsr+hsrOff))};
 }
 
 // ═══════════════════════════════════════════════════════════
-//  SVG GEOMETRY
-//  Convention: 0° = 12 o'clock, increasing clockwise
+//  SVG GEOMETRY  (0° = 12 o'clock, increasing clockwise)
 // ═══════════════════════════════════════════════════════════
-function pxy(cx,cy,r,deg) {
+function pxy(cx,cy,r,deg){
   const a=(deg-90)*Math.PI/180;
   return {x:cx+r*Math.cos(a), y:cy+r*Math.sin(a)};
 }
 
-// ── CCW arc segment path (sweep-flag=0) ───────────────────
-// fromDeg = CW edge (higher angle), toDeg = CCW edge (lower angle)
-function ccwSeg(cx,cy,r,fromDeg,toDeg,color,sw) {
+// CCW arc segment (sweep-flag 0): fromDeg → toDeg going counter-clockwise
+function ccwSeg(cx,cy,r,fromDeg,toDeg,color,sw){
   const p=pxy(cx,cy,r,fromDeg), q=pxy(cx,cy,r,toDeg);
   const span=(fromDeg-toDeg+360)%360;
   return `<path d="M${p.x.toFixed(2)},${p.y.toFixed(2)} A${r},${r} 0 ${span>180?1:0} 0 ${q.x.toFixed(2)},${q.y.toFixed(2)}" fill="none" stroke="${color}" stroke-width="${sw}" stroke-linecap="round"/>`;
 }
 
-// ── Draw n dashes going CCW from 135° (closed/right end) ──
-// Arc: 270° total, gap at bottom (135° to 225° short CW path)
-// Segment i=0 is nearest the closed end (right side)
-// litCount segments from i=0 are lit; rest are dim but visible
-function dashArcCCW(cx,cy,r,n,litCount,cLit,cDim,sw) {
-  const CLOSED=135; // bottom-right = 4:30 = closed end of arc
-  const TOTAL=270;
-  const span=TOTAL/n;
-  const fill=span*0.45; // 45% filled, 55% gap → distinct spacing
+// ── Dashed CCW arc starting from CLOSED end (135°, bottom-right)
+// n segments fill CCW; first litCount are lit colour, rest visible dim grey.
+// fill fraction 0.44 → clear gaps between segments.
+function dashArcCCW(cx,cy,r,n,litCount,cLit,sw){
+  const CLOSED=135, TOTAL=270, DIM='#52596a';
+  const span=TOTAL/n, fill=span*0.44;
   let out='';
   for(let i=0;i<n;i++){
-    const mid=CLOSED-(i+0.5)*span;  // going CCW = decreasing angle
-    out+=ccwSeg(cx,cy,r,mid+fill/2,mid-fill/2,i<litCount?cLit:cDim,sw);
+    const mid=CLOSED-(i+0.5)*span;
+    out+=ccwSeg(cx,cy,r,mid+fill/2,mid-fill/2,i<litCount?cLit:DIM,sw);
   }
   return out;
 }
@@ -288,44 +270,55 @@ function hexPts(cx,cy,r){
 }
 
 // ═══════════════════════════════════════════════════════════
-//  COMPRESSION DIAL SVG
-//  Canvas 220×268, centre (110,144)
+//  SHARED DIAL LAYOUT  (cx=110, cy=148, viewBox 220×268)
 //
-//  Two concentric CCW arc indicators outside the housing:
-//    Outer (r=108): 16 dashes = LSC  (light-grey dimmed / white lit)
-//    Inner (r= 95):  8 dashes = HSC  (light-grey dimmed / blue lit)
+//  Radii with equal spacing (~11 px gap) between each zone:
+//    Dial housing edge  :  r = 62
+//    ── gap ~11 px ──
+//    Inner arc (LOW spd):  r = 78, sw = 9   (16 segments)
+//    ── gap ~11 px ──
+//    Outer arc (HIGH spd): r = 98, sw = 9   (8 segments)
 //
-//  Both fill CCW from 135° (right = closed) as clicks increase.
-//  No rotating indicator lines. Dial graphic is decorative only.
+//  All arcs: CCW from 135° (closed/right), gap at bottom.
 // ═══════════════════════════════════════════════════════════
-function buildCompressionSVG(hsc,lsc) {
+const CX=110, CY=148;
+const R_HOUSING=62, R_INNER=78, R_OUTER=98, SW=9;
+
+function closedLabel(cx,cy){
+  // "CLOSED" label between the two arcs at the right/start point
+  const p=pxy(cx,cy,(R_INNER+R_OUTER)/2,140);
+  return `<text x="${p.x.toFixed(1)}" y="${(p.y+3).toFixed(1)}" text-anchor="start" font-family="IBM Plex Mono,monospace" font-size="7" fill="#6a7585">CLOSED</text>`;
+}
+
+// ═══════════════════════════════════════════════════════════
+//  COMPRESSION DIAL SVG
+//  Outer arc (r=98): HSC 8 segments  BLUE  lit=#3a9bdc
+//  Inner arc (r=78): LSC 16 segments GREY  lit=#dde2e8
+//  Dial graphic: blue outer ring + black inner cross
+// ═══════════════════════════════════════════════════════════
+function buildCompressionSVG(hsc,lsc){
   hsc=Math.round(Math.max(0,Math.min(HSC_MAX,hsc)));
   lsc=Math.round(Math.max(0,Math.min(LSC_MAX,lsc)));
-  const cx=110,cy=144;
-  const uid=`c${hsc}_${lsc}`;
+  const cx=CX, cy=CY, uid=`c${hsc}_${lsc}`;
 
-  const lscArcs=dashArcCCW(cx,cy,108,LSC_MAX,lsc,'#dde2e8','#52596a',10);
-  const hscArcs=dashArcCCW(cx,cy, 95,HSC_MAX,hsc,'#3a9bdc','#52596a',10);
+  const outerArcs = dashArcCCW(cx,cy,R_OUTER, HSC_MAX, hsc, '#3a9bdc', SW);
+  const innerArcs = dashArcCCW(cx,cy,R_INNER, LSC_MAX, lsc, '#dde2e8', SW);
 
-  // CLOSED label at 135° (right end of arc, between the two arcs)
-  const clp=pxy(cx,cy,101,138);
-  const closedLbl=`<text x="${clp.x.toFixed(1)}" y="${(clp.y+3).toFixed(1)}" text-anchor="start" font-family="IBM Plex Mono,monospace" font-size="7" fill="#6a7585">CLOSED</text>`;
-
-  // Knurling — 60 uniform notches around HSC ring
+  // Knurling — 60 uniform notches on HSC ring outer rim
   const knurl=Array.from({length:60},(_,i)=>{
-    const a=i*6, p1=pxy(cx,cy,63,a), p2=pxy(cx,cy,68,a);
+    const a=i*6, p1=pxy(cx,cy,57,a), p2=pxy(cx,cy,61,a);
     return `<line x1="${p1.x.toFixed(1)}" y1="${p1.y.toFixed(1)}" x2="${p2.x.toFixed(1)}" y2="${p2.y.toFixed(1)}" stroke="#000" stroke-opacity=".38" stroke-width="1.4"/>`;
   }).join('');
 
-  // Text paths on blue ring (follow the ring's fixed position — no rotation)
-  const txtD=`M${pxy(cx,cy,62,305).x.toFixed(1)},${pxy(cx,cy,62,305).y.toFixed(1)} A62,62 0 1 1 ${pxy(cx,cy,62,95).x.toFixed(1)},${pxy(cx,cy,62,95).y.toFixed(1)}`;
-  const gripD=`M${pxy(cx,cy,62,110).x.toFixed(1)},${pxy(cx,cy,62,110).y.toFixed(1)} A62,62 0 0 1 ${pxy(cx,cy,62,170).x.toFixed(1)},${pxy(cx,cy,62,170).y.toFixed(1)}`;
-
   // LSC cross path
-  const W=9,T=5.5,A=42;
+  const W=8,T=5,A=40;
   const xp=`M${cx-T},${cy-A} L${cx+T},${cy-A} L${cx+W},${cy-W} L${cx+A},${cy-T} `+
             `L${cx+A},${cy+T} L${cx+W},${cy+W} L${cx+T},${cy+A} L${cx-T},${cy+A} `+
             `L${cx-W},${cy+W} L${cx-A},${cy+T} L${cx-A},${cy-T} L${cx-W},${cy-W} Z`;
+
+  // Text paths on ring (fixed orientation — decorative)
+  const t1=pxy(cx,cy,57,300), t2=pxy(cx,cy,57,90);
+  const g1=pxy(cx,cy,57,110), g2=pxy(cx,cy,57,168);
 
   return `<svg viewBox="0 0 220 268" xmlns="http://www.w3.org/2000/svg">
 <defs>
@@ -340,57 +333,51 @@ function buildCompressionSVG(hsc,lsc) {
     <stop offset="0%" stop-color="#2e3438"/><stop offset="100%" stop-color="#14171a"/>
   </radialGradient>
   <filter id="ds${uid}"><feDropShadow dx="0" dy="3" stdDeviation="3.5" flood-color="#000" flood-opacity=".5"/></filter>
-  <path id="tp${uid}" d="${txtD}"/>
-  <path id="gp${uid}" d="${gripD}"/>
+  <path id="tp${uid}" d="M${t1.x.toFixed(1)},${t1.y.toFixed(1)} A57,57 0 1 1 ${t2.x.toFixed(1)},${t2.y.toFixed(1)}"/>
+  <path id="gp${uid}" d="M${g1.x.toFixed(1)},${g1.y.toFixed(1)} A57,57 0 0 1 ${g2.x.toFixed(1)},${g2.y.toFixed(1)}"/>
 </defs>
 
-<!-- Click count labels -->
+<!-- Labels: HSC (outer) top-left in blue, LSC (inner) top-right in grey -->
 <text x="4" y="15" font-family="IBM Plex Mono,monospace" font-size="10" font-weight="600" fill="#3a9bdc">HSC</text>
 <text x="4" y="31" font-family="IBM Plex Mono,monospace" font-size="20" font-weight="700" fill="#3a9bdc">${hsc}<tspan font-size="11" fill="#4a6070"> / ${HSC_MAX}</tspan></text>
 <text x="216" y="15" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="10" font-weight="600" fill="#dde2e8">LSC</text>
 <text x="216" y="31" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="20" font-weight="700" fill="#dde2e8">${lsc}<tspan font-size="11" fill="#4a6070"> / ${LSC_MAX}</tspan></text>
 
-<!-- OUTER arc — LSC: 16 dashes, fills CCW from closed (right) -->
-${lscArcs}
-<!-- INNER arc — HSC: 8 dashes, fills CCW from closed (right) -->
-${hscArcs}
-<!-- CLOSED label at right end -->
-${closedLbl}
+<!-- Outer arc: HSC, 8 segs, blue -->
+${outerArcs}
+<!-- Inner arc: LSC, 16 segs, grey/white -->
+${innerArcs}
+${closedLabel(cx,cy)}
 
-<!-- Housing (dark anodised) -->
-<circle cx="${cx}" cy="${cy}" r="76" fill="url(#hg${uid})" stroke="#0a0b0d" stroke-width="1.5" filter="url(#ds${uid})"/>
-<circle cx="${cx}" cy="${cy}" r="76" fill="none" stroke="#363a3f" stroke-width=".6" opacity=".5"/>
+<!-- Housing -->
+<circle cx="${cx}" cy="${cy}" r="${R_HOUSING}" fill="url(#hg${uid})" stroke="#0a0b0d" stroke-width="1.5" filter="url(#ds${uid})"/>
+<circle cx="${cx}" cy="${cy}" r="${R_HOUSING}" fill="none" stroke="#363a3f" stroke-width=".6" opacity=".5"/>
 
-<!-- Blue HSC outer ring (decorative, no rotation) -->
-<circle cx="${cx}" cy="${cy}" r="70" fill="url(#rg${uid})"/>
-<circle cx="${cx}" cy="${cy}" r="55" fill="url(#hg${uid})"/>
-<circle cx="${cx}" cy="${cy}" r="70" fill="none" stroke="#000" stroke-width="12" stroke-opacity=".26"/>
-<circle cx="${cx}" cy="${cy}" r="70" fill="none" stroke="#6ab9f5" stroke-width=".7" opacity=".3"/>
-<circle cx="${cx}" cy="${cy}" r="55" fill="none" stroke="#000" stroke-width="1.4"/>
-
-<!-- Knurling -->
+<!-- Blue HSC ring (r=48–58) -->
+<circle cx="${cx}" cy="${cy}" r="58" fill="url(#rg${uid})"/>
+<circle cx="${cx}" cy="${cy}" r="46" fill="url(#hg${uid})"/>
+<circle cx="${cx}" cy="${cy}" r="58" fill="none" stroke="#000" stroke-width="10" stroke-opacity=".25"/>
+<circle cx="${cx}" cy="${cy}" r="58" fill="none" stroke="#6ab9f5" stroke-width=".7" opacity=".28"/>
+<circle cx="${cx}" cy="${cy}" r="46" fill="none" stroke="#000" stroke-width="1.3"/>
 ${knurl}
 
-<!-- Ring text -->
-<text font-family="Arial,sans-serif" font-size="5" fill="rgba(255,255,255,.68)" letter-spacing=".5">
+<!-- Decorative text on ring -->
+<text font-family="Arial,sans-serif" font-size="4.8" fill="rgba(255,255,255,.65)" letter-spacing=".5">
   <textPath href="#tp${uid}">VVC HIGH SPEED COMPRESSION  I  +</textPath>
 </text>
 <text font-family="Arial,sans-serif" font-size="6.5" font-weight="700" fill="rgba(255,255,255,.78)" letter-spacing="1.1">
   <textPath href="#gp${uid}">GRIP2</textPath>
 </text>
-<!-- Decorative sweep arcs on ring -->
-<path d="M${pxy(cx,cy,63,295).x.toFixed(1)},${pxy(cx,cy,63,295).y.toFixed(1)} A63,63 0 0 1 ${pxy(cx,cy,63,345).x.toFixed(1)},${pxy(cx,cy,63,345).y.toFixed(1)}" fill="none" stroke="rgba(255,255,255,.17)" stroke-width="4" stroke-linecap="round"/>
-<path d="M${pxy(cx,cy,63,135).x.toFixed(1)},${pxy(cx,cy,63,135).y.toFixed(1)} A63,63 0 0 1 ${pxy(cx,cy,63,175).x.toFixed(1)},${pxy(cx,cy,63,175).y.toFixed(1)}" fill="none" stroke="rgba(255,255,255,.13)" stroke-width="3.5" stroke-linecap="round"/>
 
-<!-- LSC inner cross (decorative, fixed position) -->
-<path d="${xp}" fill="url(#ig${uid})" stroke="#111" stroke-width="1.4"/>
-<path d="${xp}" fill="none" stroke="rgba(255,255,255,.04)" stroke-width=".7"/>
-<text x="${cx}"     y="${cy-28}" text-anchor="middle" font-family="Arial,sans-serif" font-size="6"   font-weight="700" fill="#9aa0a6" letter-spacing=".4">LSC</text>
-<text x="${cx+29}"  y="${cy+4}"  text-anchor="middle" font-family="Arial,sans-serif" font-size="9"   font-weight="700" fill="#9aa0a6">+</text>
-<text x="${cx-29}"  y="${cy+4}"  text-anchor="middle" font-family="Arial,sans-serif" font-size="7.5" font-weight="700" fill="#9aa0a6">I</text>
-<text x="${cx}"     y="${cy+35}" text-anchor="middle" font-family="Arial,sans-serif" font-size="5"   font-weight="700" fill="#4a5060" letter-spacing="2">FOX</text>
+<!-- LSC inner cross (r=40) -->
+<path d="${xp}" fill="url(#ig${uid})" stroke="#111" stroke-width="1.3"/>
+<path d="${xp}" fill="none" stroke="rgba(255,255,255,.04)" stroke-width=".6"/>
+<text x="${cx}" y="${cy-25}" text-anchor="middle" font-family="Arial,sans-serif" font-size="6" font-weight="700" fill="#9aa0a6" letter-spacing=".4">LSC</text>
+<text x="${cx+27}" y="${cy+4}" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="700" fill="#9aa0a6">+</text>
+<text x="${cx-27}" y="${cy+3}" text-anchor="middle" font-family="Arial,sans-serif" font-size="7.5" font-weight="700" fill="#9aa0a6">I</text>
+<text x="${cx}" y="${cy+32}" text-anchor="middle" font-family="Arial,sans-serif" font-size="5" font-weight="700" fill="#4a5060" letter-spacing="2">FOX</text>
 
-<!-- Centre hex bolt -->
+<!-- Centre bolt -->
 <circle cx="${cx}" cy="${cy}" r="10" fill="#101214" stroke="#2a2e33" stroke-width="1"/>
 <polygon points="${hexPts(cx,cy,6.5)}" fill="#1c2024" stroke="#3a3d42" stroke-width=".5"/>
 <circle cx="${cx}" cy="${cy}" r="3" fill="#2a2d32"/>
@@ -398,49 +385,100 @@ ${knurl}
 }
 
 // ═══════════════════════════════════════════════════════════
-//  REBOUND DIAL SVG  (one per adjuster: LSR and HSR)
-//  Canvas 130×158, centre (65,96)
-//  270° arc, CCW from 135°. No indicator line. Knob decorative.
+//  REBOUND DIAL SVG  (combined single dial)
+//  Outer arc (r=98): HSR 8 segments   ORANGE  lit=#e07030
+//  Inner arc (r=78): LSR 16 segments  AMBER   lit=#c89020
+//  Dial graphic: two stacked RED cylinders (top-down view)
+//    Larger outer cylinder r=56, smaller inner cylinder r=40
 // ═══════════════════════════════════════════════════════════
-function buildReboundDial(clicks,maxClicks,label) {
-  clicks=Math.round(Math.max(0,Math.min(maxClicks,clicks)));
-  const cx=65,cy=96;
-  const uid=`r${label}${clicks}`;
-  const arcs=dashArcCCW(cx,cy,56,maxClicks,clicks,'#e07030','#52596a',8);
-  const clp=pxy(cx,cy,56,140);
+function buildReboundSVG(lsr,hsr){
+  lsr=Math.round(Math.max(0,Math.min(LSR_MAX,lsr)));
+  hsr=Math.round(Math.max(0,Math.min(HSR_MAX,hsr)));
+  const cx=CX, cy=CY, uid=`r${lsr}_${hsr}`;
 
-  const knurl=Array.from({length:40},(_,i)=>{
-    const a=i*9, p1=pxy(cx,cy,44,a), p2=pxy(cx,cy,48,a);
+  const outerArcs = dashArcCCW(cx,cy,R_OUTER, HSR_MAX, hsr, '#e07030', SW);
+  const innerArcs = dashArcCCW(cx,cy,R_INNER, LSR_MAX, lsr, '#c89020', SW);
+
+  // Knurling on outer cylinder rim (r=53–57)
+  const knurl=Array.from({length:52},(_,i)=>{
+    const a=i*(360/52), p1=pxy(cx,cy,52,a), p2=pxy(cx,cy,56,a);
     return `<line x1="${p1.x.toFixed(1)}" y1="${p1.y.toFixed(1)}" x2="${p2.x.toFixed(1)}" y2="${p2.y.toFixed(1)}" stroke="#000" stroke-opacity=".35" stroke-width="1.3"/>`;
   }).join('');
 
-  return `<svg viewBox="0 0 130 158" xmlns="http://www.w3.org/2000/svg">
+  return `<svg viewBox="0 0 220 268" xmlns="http://www.w3.org/2000/svg">
 <defs>
-  <radialGradient id="kg${uid}" cx="38%" cy="32%" r="70%">
+  <radialGradient id="hg${uid}" cx="38%" cy="32%" r="72%">
     <stop offset="0%" stop-color="#3a3e44"/><stop offset="100%" stop-color="#14171a"/>
   </radialGradient>
-  <radialGradient id="ki${uid}" cx="38%" cy="32%" r="68%">
-    <stop offset="0%" stop-color="#272c30"/><stop offset="100%" stop-color="#12151a"/>
+  <!-- Outer cylinder: deep red -->
+  <radialGradient id="oc${uid}" cx="36%" cy="30%" r="70%">
+    <stop offset="0%" stop-color="#c82020"/><stop offset="55%" stop-color="#961414"/>
+    <stop offset="100%" stop-color="#580808"/>
   </radialGradient>
-  <filter id="ks${uid}"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity=".5"/></filter>
+  <!-- Inner cylinder: slightly brighter red (sits higher, catches more light) -->
+  <radialGradient id="ic${uid}" cx="36%" cy="30%" r="68%">
+    <stop offset="0%" stop-color="#dd3030"/><stop offset="55%" stop-color="#aa1c1c"/>
+    <stop offset="100%" stop-color="#6e1010"/>
+  </radialGradient>
+  <filter id="ds${uid}"><feDropShadow dx="0" dy="3" stdDeviation="3.5" flood-color="#000" flood-opacity=".5"/></filter>
+  <filter id="stepShadow${uid}" x="-30%" y="-30%" width="160%" height="160%">
+    <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000" flood-opacity=".55"/>
+  </filter>
 </defs>
-<text x="${cx}" y="15" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" font-weight="600" fill="#e07030">${label}</text>
-<text x="${cx}" y="30" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="20" font-weight="700" fill="#e07030">${clicks}<tspan font-size="10" fill="#5a6070"> / ${maxClicks}</tspan></text>
-${arcs}
-<text x="${clp.x.toFixed(1)}" y="${(clp.y+3).toFixed(1)}" text-anchor="start" font-family="IBM Plex Mono,monospace" font-size="6.5" fill="#6a7585">CLOSED</text>
-<circle cx="${cx}" cy="${cy}" r="42" fill="url(#kg${uid})" stroke="#0a0b0d" stroke-width="1.4" filter="url(#ks${uid})"/>
-<circle cx="${cx}" cy="${cy}" r="32" fill="url(#ki${uid})" stroke="#000" stroke-width="1.2"/>
-<circle cx="${cx}" cy="${cy}" r="42" fill="none" stroke="#000" stroke-width="9" stroke-opacity=".22"/>
+
+<!-- Labels: HSR (outer) top-left in orange, LSR (inner) top-right in amber -->
+<text x="4" y="15" font-family="IBM Plex Mono,monospace" font-size="10" font-weight="600" fill="#e07030">HSR</text>
+<text x="4" y="31" font-family="IBM Plex Mono,monospace" font-size="20" font-weight="700" fill="#e07030">${hsr}<tspan font-size="11" fill="#4a6070"> / ${HSR_MAX}</tspan></text>
+<text x="216" y="15" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="10" font-weight="600" fill="#c89020">LSR</text>
+<text x="216" y="31" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="20" font-weight="700" fill="#c89020">${lsr}<tspan font-size="11" fill="#4a6070"> / ${LSR_MAX}</tspan></text>
+
+<!-- Outer arc: HSR, 8 segs, orange -->
+${outerArcs}
+<!-- Inner arc: LSR, 16 segs, amber -->
+${innerArcs}
+${closedLabel(cx,cy)}
+
+<!-- Housing ring (dark anodised) -->
+<circle cx="${cx}" cy="${cy}" r="${R_HOUSING}" fill="url(#hg${uid})" stroke="#0a0b0d" stroke-width="1.5" filter="url(#ds${uid})"/>
+<circle cx="${cx}" cy="${cy}" r="${R_HOUSING}" fill="none" stroke="#363a3f" stroke-width=".6" opacity=".5"/>
+
+<!-- Outer cylinder (larger, base): deep red, r=56 -->
+<circle cx="${cx}" cy="${cy}" r="56" fill="url(#oc${uid})"/>
+<!-- Rim ambient occlusion on outer cylinder -->
+<circle cx="${cx}" cy="${cy}" r="56" fill="none" stroke="#000" stroke-width="10" stroke-opacity=".30"/>
+<!-- Outer cylinder top-edge highlight -->
+<circle cx="${cx}" cy="${cy}" r="56" fill="none" stroke="#ff6060" stroke-width=".8" opacity=".22"/>
+<!-- Knurling on outer cylinder rim -->
 ${knurl}
-<circle cx="${cx}" cy="${cy}" r="6" fill="#101214" stroke="#2a2e33" stroke-width=".8"/>
-<circle cx="${cx}" cy="${cy}" r="2.5" fill="#1e2226"/>
+
+<!-- Step shadow — dark ring at outer edge of inner cylinder (creates height illusion) -->
+<circle cx="${cx}" cy="${cy}" r="41" fill="none" stroke="#000" stroke-width="6" stroke-opacity=".65" filter="url(#stepShadow${uid})"/>
+
+<!-- Inner cylinder (smaller, sits on top): brighter red, r=40 -->
+<circle cx="${cx}" cy="${cy}" r="40" fill="url(#ic${uid})"/>
+<!-- Rim occlusion on inner cylinder -->
+<circle cx="${cx}" cy="${cy}" r="40" fill="none" stroke="#000" stroke-width="8" stroke-opacity=".28"/>
+<!-- Inner cylinder top-edge highlight -->
+<circle cx="${cx}" cy="${cy}" r="40" fill="none" stroke="#ff7070" stroke-width=".8" opacity=".25"/>
+<!-- Gloss highlight on inner cylinder top -->
+<ellipse cx="${cx-12}" cy="${cy-14}" rx="16" ry="10" fill="rgba(255,255,255,.08)" transform="rotate(-20 ${cx-12} ${cy-14})"/>
+
+<!-- Small text labels on cylinders -->
+<text x="${cx}" y="${cy-14}" text-anchor="middle" font-family="Arial,sans-serif" font-size="6" font-weight="700" fill="rgba(255,255,255,.55)" letter-spacing=".5">LSR</text>
+<text x="${cx}" y="${cy+4}"  text-anchor="middle" font-family="Arial,sans-serif" font-size="5.5" font-weight="400" fill="rgba(255,255,255,.35)">INNER</text>
+<text x="${cx}" y="${cy+28}" text-anchor="middle" font-family="Arial,sans-serif" font-size="5" font-weight="700" fill="rgba(255,80,40,.55)" letter-spacing=".5">HSR OUTER</text>
+
+<!-- Centre bolt (black, recessed look) -->
+<circle cx="${cx}" cy="${cy}" r="10" fill="#0e1012" stroke="#2a1515" stroke-width="1"/>
+<polygon points="${hexPts(cx,cy,6.5)}" fill="#1a1010" stroke="#3a2020" stroke-width=".5"/>
+<circle cx="${cx}" cy="${cy}" r="3" fill="#201010"/>
 </svg>`;
 }
 
 // ═══════════════════════════════════════════════════════════
 //  RENDER
 // ═══════════════════════════════════════════════════════════
-function renderTerrain() {
+function renderTerrain(){
   const wrap=document.getElementById('terrainList');
   wrap.innerHTML=TERRAIN.map(t=>`
     <button class="tbtn${t.id===state.terrain?' on':''}" data-id="${t.id}">
@@ -451,20 +489,18 @@ function renderTerrain() {
     b.addEventListener('click',()=>{state.terrain=b.dataset.id;renderAll();}));
 }
 
-function renderDials() {
+function renderDials(){
   const t=TERRAIN.find(t=>t.id===state.terrain);
-  const reb=getRebound(state.weightKg,t.lsrOff,t.hsrOff);
+  const reb=getReb(state.weightKg,t.lsrOff,t.hsrOff);
   document.getElementById('compDial').innerHTML=buildCompressionSVG(t.hsc,t.lsc);
-  document.getElementById('rebDials').innerHTML=
-    buildReboundDial(reb.lsr,LSR_MAX,'LSR')+
-    buildReboundDial(reb.hsr,HSR_MAX,'HSR');
+  document.getElementById('rebDial').innerHTML=buildReboundSVG(reb.lsr,reb.hsr);
 }
 
-function renderAir() {
+function renderAir(){
   document.getElementById('airPsi').innerHTML=`${airPsi(state.weightKg)}<small> PSI</small>`;
 }
 
-function renderWeight() {
+function renderWeight(){
   const v=state.unit==='kg'?Math.round(state.weightKg):Math.round(state.weightKg*2.20462);
   document.getElementById('wVal').textContent=v;
   document.getElementById('wUnit').textContent=state.unit;
@@ -484,8 +520,7 @@ document.getElementById('uKg').addEventListener('click',()=>{
   document.getElementById('uKg').classList.add('on');
   document.getElementById('uLb').classList.remove('on');
   const sl=document.getElementById('wSlider');
-  sl.min=40;sl.max=140;sl.value=Math.round(state.weightKg);
-  renderWeight();
+  sl.min=40;sl.max=140;sl.value=Math.round(state.weightKg);renderWeight();
 });
 document.getElementById('uLb').addEventListener('click',()=>{
   if(state.unit==='lb')return;
@@ -493,8 +528,7 @@ document.getElementById('uLb').addEventListener('click',()=>{
   document.getElementById('uLb').classList.add('on');
   document.getElementById('uKg').classList.remove('on');
   const sl=document.getElementById('wSlider');
-  sl.min=88;sl.max=308;sl.value=Math.round(state.weightKg*2.20462);
-  renderWeight();
+  sl.min=88;sl.max=308;sl.value=Math.round(state.weightKg*2.20462);renderWeight();
 });
 
 if('serviceWorker' in navigator){
